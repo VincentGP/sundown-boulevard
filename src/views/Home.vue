@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="row">
+      <div class="col-12">
+        <router-link class="btn btn-primary" to="/select-food">Order</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
