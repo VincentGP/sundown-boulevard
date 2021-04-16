@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-8">
       <div class="row">
-        <div class="col-6" v-for="beverage in beveragesToShow" :key="beverage.id" @click="toggleBeverage(beverage)">
+        <div class="col-6 col-lg-4" v-for="beverage in beveragesToShow" :key="beverage.id" @click="toggleBeverage(beverage)">
           <div class="border mb-3 p-2">
             <img class="img-fluid mx-auto d-block" :src="beverage.image_url" />
             <h5 class="fw-bold">{{ beverage.name }}</h5>

@@ -12,6 +12,9 @@
   <div class="container mt-3 mb-3">
     <router-view/>
   </div>
+  <footer class="text-center">
+    Sundown Boulevard
+  </footer>
 </template>
 
 <script>
@@ -34,10 +37,11 @@ export default {
 
 <style lang="scss">
 
+$secondary: #007DDB;
 // Override Bootstrap colors
 $theme-colors: (
    primary: #BA2329,
-   secondary: #007DDB
+   secondary: $secondary
 );
 @import 'bootstrap/scss/bootstrap.scss';
 
@@ -84,6 +88,13 @@ $theme-colors: (
 
 .btn-secondary {
   color: #fff;
+}
+
+footer {
+  background-color: $secondary;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 </style>
