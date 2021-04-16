@@ -11,14 +11,14 @@
       </div>
     </div>
     <div class="col-4">
-      <OrderOverview btnTxt="Yes, confirm and continue.." />
+      <OrderOverview btnTxt="Yes, confirm and continue.." navigateTo="/confirm-order" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import OrderOverview from '../OrderOverview';
+import OrderOverview from '../../../components/OrderOverview.vue';
 
   export default {
     components: { OrderOverview },
@@ -46,7 +46,6 @@ import OrderOverview from '../OrderOverview';
     },
     computed: {
       beveragesToShow() {
-
         return this.beverages;
       }
     }

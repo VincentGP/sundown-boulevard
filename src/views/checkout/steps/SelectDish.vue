@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!isLoading" class="row">
-    <div class="col-8">
+  <div class="row">
+    <div v-if="!isLoading" class="col-8">
       <div class="card">
         <img
           class="card-img-top img-fluid"
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="row g-0">
-        <div class="offset-8 col-4">
+        <div class="offset-7 col-5">
           <button class="btn btn-secondary mt-2" @click="loadDish()">
             Try another dish
           </button>
@@ -22,14 +22,14 @@
       </div>
     </div>
     <div class="col-4">
-      <OrderOverview btnTxt="Yes, confirm and continue.." />
+      <OrderOverview btnTxt="I'm thirsty.." navigateTo="/select-beverage" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import OrderOverview from '../OrderOverview.vue';
+import OrderOverview from '../../../components/OrderOverview.vue';
 
 export default {
   components: { OrderOverview },
@@ -48,11 +48,13 @@ export default {
       this.currentDish = newDish;
     },
     loadDish() {
+      this.isLoading = true;
       axios
         .get("https://www.themealdb.com/api/json/v1/1/random.php")
         .then((res) => {
           if (res.data.meals.length > 0) {
             this.currentDish = res.data.meals[0];
+            this.$store.commit('selectDish', this.currentDish);
             this.isLoading = false;
           }
         })

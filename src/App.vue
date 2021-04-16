@@ -1,23 +1,67 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div class="row align-items-center">
+      <div class="col">
+        <router-link to="/">
+          <img src="/logo.svg" class="img-fluid mx-auto d-block logo" alt="Sundown Boulevard logo">
+        </router-link>
+      </div>
+      <div v-for="(navigationItem, i) in navigation" :key="i" class="col navigation-item">{{ navigationItem }}</div>
+    </div>
   </div>
-  <div class="container">
+  <div class="container mt-3 mb-3">
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      navigation: [
+        'Restauranter',
+        'Produkter',
+        'Nyhedsbrev',
+        'Kontakt'
+      ]
+    }
+  },
+  beforeCreate() {
+    this.$store.commit('loadOrder');
+  }
+}
+</script>
+
 <style lang="scss">
+
+// Override Bootstrap colors
+$theme-colors: (
+   primary: #BA2329,
+   secondary: #007DDB
+);
+@import 'bootstrap/scss/bootstrap.scss';
+
 #app {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
 
 #nav {
-  padding: 30px;
+  padding: 15px 30px;
+  background-color: #f9f9f9;
+  box-shadow: -13px -12px 13px 8px #888888;
+
+  .logo {
+    max-height: 80px;
+  }
+
+  .navigation-item {
+    text-transform: uppercase;
+    font-size: 14px ;
+    font-weight: 700;
+  }
 
   a {
     font-weight: bold;
@@ -28,4 +72,18 @@
     }
   }
 }
+
+.btn {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  
+}
+
+.btn-secondary {
+  color: #fff;
+}
+
 </style>
