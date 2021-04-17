@@ -77,13 +77,13 @@ $theme-colors: (
   }
 }
 
+h1 {
+  font-weight: 700;
+}
+
 .btn {
   font-weight: 900;
   text-transform: uppercase;
-}
-
-.btn-primary {
-  
 }
 
 .btn-secondary {

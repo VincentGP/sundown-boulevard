@@ -18,17 +18,22 @@ const routes = [
   {
     path: '/select-dish',
     name: 'Select dish',
-    component: () => import(/* webpackChunkName: "about" */ '../views/checkout/steps/SelectDish.vue')
+    component: () => import('../views/checkout/steps/SelectDish.vue')
   },
   {
     path: '/select-beverage',
     name: 'Select beverage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/checkout/steps/SelectBeverage.vue')
+    component: () => import('../views/checkout/steps/SelectBeverage.vue')
   },
   {
     path: '/confirm-order',
     name: 'Confirm order',
-    component: () => import(/* webpackChunkName: "about" */ '../views/checkout/steps/ConfirmOrder.vue')
+    component: () => import('../views/checkout/steps/ConfirmOrder.vue')
+  },
+  {
+    path: '/receipt',
+    name: 'Receipt',
+    component: () => import('../views/checkout/Receipt.vue')
   }
 ]
 

@@ -9,7 +9,8 @@
       </div>
       <div class="col-6">
         <span>Find your order here:</span>
-        <input type="email">
+        <input type="email" v-model="email">
+        <button class="btn btn-primary" @click="findOrder()">Find order</button>
       </div>
     </div>
     <div class="row">
@@ -41,7 +42,13 @@ export default {
     },
     data() {
       return {
-        btnText: 'Create order'
+        btnText: 'Create order',
+        email: ''
+      }
+    },
+    methods: {
+      findOrder() {
+        this.$store.commit('loadOrder', this.email);
       }
     },
     created() {

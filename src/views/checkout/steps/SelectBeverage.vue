@@ -19,37 +19,38 @@
 <script>
 import axios from 'axios';
 import OrderOverview from '../../../components/OrderOverview.vue';
+import beers from '../../../json/beers.json';
 
-  export default {
-    components: { OrderOverview },
-    data() {
-      return {
-        beverages: []
-      }
+export default {
+  components: { OrderOverview },
+  data() {
+    return {
+      beverages: beers
+    }
+  },
+  created() {
+    // this.loadBeverages();
+  },
+  methods: {
+    loadBeverages() {
+      axios.get('https://api.punkapi.com/v2/beers')
+        .then(res => {
+          if (res.data.length > 0) {
+            this.beverages = res.data;
+          }
+        })
+        .catch(err => console.log(err));
     },
-    created() {
-      this.loadBeverages();
-    },
-    methods: {
-      loadBeverages() {
-        axios.get('https://api.punkapi.com/v2/beers')
-          .then(res => {
-            if (res.data.length > 0) {
-              this.beverages = res.data;
-            }
-          })
-          .catch(err => console.log(err));
-      },
-      toggleBeverage(beverage) {
-        this.$store.commit('toggleBeverageSelection', beverage);
-      }
-    },
-    computed: {
-      beveragesToShow() {
-        return this.beverages;
-      }
+    toggleBeverage(beverage) {
+      this.$store.commit('toggleBeverageSelection', beverage);
+    }
+  },
+  computed: {
+    beveragesToShow() {
+      return this.beverages;
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
