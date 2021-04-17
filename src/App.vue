@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col">
         <router-link to="/">
-          <img src="/logo.svg" class="img-fluid logo" alt="Sundown Boulevard logo">
+          <img src="./assets/logo.svg" class="img-fluid logo" alt="Sundown Boulevard logo">
         </router-link>
       </div>
       <div v-for="(navigationItem, i) in navigation" :key="i" class="col navigation-item">{{ navigationItem }}</div>

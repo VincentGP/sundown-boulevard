@@ -22,9 +22,9 @@
           :space-between="50"
           :pagination="{ clickable: true }"
         >
-          <swiper-slide><img class="img-fluid" src="/cage.jpg" /></swiper-slide>
-          <swiper-slide><img class="img-fluid" src="/cage.jpg" /></swiper-slide>
-          <swiper-slide><img class="img-fluid" src="/cage.jpg" /></swiper-slide>
+          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
+          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
+          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
         </swiper>
       </div>
     </div>
