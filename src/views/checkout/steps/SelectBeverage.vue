@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <div class="row">
         <div class="col-6 col-lg-4" v-for="beverage in beveragesToShow" :key="beverage.id" @click="toggleBeverage(beverage)">
           <div class="border mb-3 p-2">
@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <OrderOverview btnTxt="Yes, confirm and continue.." navigateTo="/confirm-order" :validateStep="true" />
     </div>
   </div>

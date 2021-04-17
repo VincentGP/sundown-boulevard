@@ -1,15 +1,15 @@
 <template>
   <div class="row">
-    <div v-if="!isLoading" class="col-8">
+    <div v-if="!isLoading" class="col-7">
       <div class="card">
         <img
           class="card-img-top img-fluid"
-          :src="currentDish.strMealThumb"
-          :alt="currentDish.strMeal"
-          :title="currentDish.strMeal"
+          :src="currentOrder.selectedDish.strMealThumb"
+          :alt="currentOrder.selectedDish.strMeal"
+          :title="currentOrder.selectedDish.strMeal"
         />
         <div class="card-body">
-          <h5 class="card-title fw-bold">{{ currentDish.strMeal }}</h5>
+          <h5 class="card-title fw-bold">{{ currentOrder.selectedDish.strMeal }}</h5>
           <p class="card-text">{{ shortDescription }}</p>
         </div>
       </div>
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <OrderOverview btnTxt="I'm thirsty.." navigateTo="/select-beverage" :validateStep="false" />
     </div>
   </div>
@@ -30,6 +30,7 @@
 <script>
 import axios from 'axios';
 import OrderOverview from '../../../components/OrderOverview.vue';
+import { mapGetters } from "vuex";
 
 export default {
   components: { OrderOverview },
@@ -40,13 +41,14 @@ export default {
     };
   },
   created() {
-    this.loadDish();
+    // If user no current dish is selected
+    if (this.currentOrder.selectedDish == null) {
+      this.loadDish();
+    } else {
+      this.isLoading = false;
+    }
   },
   methods: {
-    tryAnotherDish() {
-      const newDish = this.food[Math.floor(Math.random() * this.food.length)];
-      this.currentDish = newDish;
-    },
     loadDish() {
       this.isLoading = true;
       axios
@@ -62,12 +64,15 @@ export default {
     },
   },
   computed: {
+    ...mapGetters([
+      'currentOrder'
+    ]),
     shortDescription() {
       const maxLength = 200;
-      if (this.currentDish.strInstructions.length > maxLength) {
-        return `${this.currentDish.strInstructions.substring(0, maxLength)}...`;
+      if (this.currentOrder.selectedDish.strInstructions.length > maxLength) {
+        return `${this.currentOrder.selectedDish.strInstructions.substring(0, maxLength)}...`;
       } else {
-        return this.currentDish.strInstructions;
+        return this.currentOrder.selectedDish.strInstructions;
       }
     },
   },

@@ -38,10 +38,12 @@ export default {
 <style lang="scss">
 
 $secondary: #007DDB;
+$tertiary: #FDEC60;
 // Override Bootstrap colors
 $theme-colors: (
    primary: #BA2329,
-   secondary: $secondary
+   secondary: $secondary,
+   tertiary: $tertiary
 );
 @import 'bootstrap/scss/bootstrap.scss';
 
@@ -88,6 +90,10 @@ h1 {
 
 .btn-secondary {
   color: #fff;
+}
+
+.invalid-feedback {
+  display: block;
 }
 
 footer {

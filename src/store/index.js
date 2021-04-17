@@ -23,7 +23,7 @@ const mutations = {
   },
   selectDish(state, dishData) {
     state.currentOrder.selectedDish = dishData;
-    saveOrderToLocalStorage(state.currentOrder);
+    saveOrderToLocalStorage(state.currentOrder, true);
   },
   loadOrder(state, email) {
     let notifyUser = false;
@@ -68,8 +68,11 @@ export default createStore({
     }
   },
   getters: {
-    getCurrentOrder: (state) => {
+    currentOrder: (state) => {
       return state.currentOrder;
+    },
+    getCurrentDish: (state) => {
+      return state.currentOrder.selectedDish;
     }
   }
 })
@@ -78,10 +81,16 @@ const saveOrderToLocalStorage = (currentOrder, becomesCurrentOrder = false) => {
   // Create key to be able to fetch saved order (or current order)
   let key = 'currentOrder';
   if (currentOrder.email != '') {
-    if (condition) {
-      
-    }
     key += `_${currentOrder.email}`;
+    // Delete the saved order from storage and convert to currentOrder
+    if (becomesCurrentOrder) {
+      localStorage.removeItem(key);
+      localStorage.setItem('currentOrder', JSON.stringify(currentOrder));
+    } else {
+      localStorage.setItem(key, JSON.stringify(currentOrder));
+    }
+  } else {
+    // Save order to localStorage
+    localStorage.setItem(key, JSON.stringify(currentOrder));
   }
-  localStorage.setItem(key, JSON.stringify(currentOrder));
 }
