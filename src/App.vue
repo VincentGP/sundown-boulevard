@@ -54,6 +54,12 @@ $theme-colors: (
   color: #2c3e50;
 }
 
+.container {
+  @media screen and (min-width: 1440px) {
+    max-width: 1070px;
+  }
+}
+
 #nav {
   padding: 15px 30px;
   background-color: #f9f9f9;
@@ -76,6 +82,9 @@ $theme-colors: (
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 15px 110px;
   }
 }
 
