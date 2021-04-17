@@ -6,7 +6,8 @@ const getDefaultState = () => {
     currentOrder: {
       selectedDish: null,
       selectedBeverages: [],
-      dateAndTime: new Date(),
+      date: new Date(),
+      time: '16:00',
       amountOfPeople: 0,
       email: ''
     }
@@ -19,7 +20,7 @@ const mutations = {
   toggleBeverageSelection(state, beverageData) {
     const index = state.currentOrder.selectedBeverages.findIndex(x => x.id == beverageData.id);
     index === -1 ? state.currentOrder.selectedBeverages.push(beverageData) : state.currentOrder.selectedBeverages.splice(index, 1);
-    saveOrderToLocalStorage(state.currentOrder);
+    saveOrderToLocalStorage(state.currentOrder, true);
   },
   selectDish(state, dishData) {
     state.currentOrder.selectedDish = dishData;
@@ -51,6 +52,9 @@ const mutations = {
   },
   confirmOrder(state, confirmationDetailsData) {
     state.currentOrder.email = confirmationDetailsData.email;
+    state.currentOrder.amountOfPeople = confirmationDetailsData.amountOfPeople;
+    state.currentOrder.time = confirmationDetailsData.time;
+    state.currentOrder.date = confirmationDetailsData.date;
     saveOrderToLocalStorage(state.currentOrder);
     // Clear current order state
     Object.assign(state, getDefaultState());
@@ -73,6 +77,10 @@ export default createStore({
     },
     getCurrentDish: (state) => {
       return state.currentOrder.selectedDish;
+    },
+    // Used to determine whether order is ongoing/being updated or new
+    getOrderStatus: (state) => {
+      return state.currentOrder.email != '' ? 'Update order' : 'Create order';
     }
   }
 })

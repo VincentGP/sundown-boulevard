@@ -4,15 +4,15 @@
       <div class="row dish">
         <div class="col-6 px-0">
           <img
-            class="card-img-top img-fluid"
-            :src="currentOrder.selectedDish.strMealThumb"
-            :alt="currentOrder.selectedDish.strMeal"
-            :title="currentOrder.selectedDish.strMeal"
+            class="img-fluid"
+            :src="dishImage"
+            :alt="dishName"
+            :title="dishName"
           />
         </div>
         <div class="col-6">
           <div class="card-body">
-            <h5 class="card-title fw-bold">{{ currentOrder.selectedDish.strMeal }}</h5>
+            <h5 class="card-title fw-bold">{{ dishName }}</h5>
             <p class="card-text">{{ shortDescription }}</p>
           </div>
         </div>
@@ -67,20 +67,34 @@ export default {
       'currentOrder'
     ]),
     shortDescription() {
-      const maxLength = 250;
-      if (this.currentOrder.selectedDish.strInstructions.length > maxLength) {
-        return `${this.currentOrder.selectedDish.strInstructions.substring(0, maxLength)}...`;
+      const maxLength = 220;
+      if (this.dishInstructions.length > maxLength) {
+        return `${this.dishInstructions.substring(0, maxLength)}...`;
       } else {
-        return this.currentOrder.selectedDish.strInstructions;
+        return this.dishInstructions;
       }
     },
+    dishImage () {
+      return this.currentOrder.selectedDish != null ? this.currentOrder.selectedDish.strMealThumb : '';
+    },
+    dishName () {
+      return this.currentOrder.selectedDish != null ? this.currentOrder.selectedDish.strMeal : '';
+    },
+    dishInstructions () {
+      return this.currentOrder.selectedDish != null ? this.currentOrder.selectedDish.strInstructions : '';
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .dish {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  img {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
+  }
 }
 </style>

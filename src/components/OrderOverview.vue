@@ -51,11 +51,6 @@ export default {
         // Should be expanded to take validation specific to steps into account
         this.currentOrder.selectedBeverages.length > 0 ? this.validated = true : this.validated = false;
 
-        if (this.confirmationDetails != null) {
-          console.log(this.confirmationDetails.email);
-          
-        }
-
       } else {
         this.validated = true;
       }

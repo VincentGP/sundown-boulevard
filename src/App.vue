@@ -3,13 +3,14 @@
     <div class="row align-items-center">
       <div class="col">
         <router-link to="/">
-          <img src="/logo.svg" class="img-fluid mx-auto d-block logo" alt="Sundown Boulevard logo">
+          <img src="/logo.svg" class="img-fluid logo" alt="Sundown Boulevard logo">
         </router-link>
       </div>
       <div v-for="(navigationItem, i) in navigation" :key="i" class="col navigation-item">{{ navigationItem }}</div>
+      <router-link class="btn btn-primary col" to="/select-dish">{{ getOrderStatus }}</router-link>
     </div>
   </div>
-  <div class="container mt-3 mb-3">
+  <div class="container mt-3 mb-5">
     <router-view/>
   </div>
   <footer class="text-center">
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -31,17 +34,23 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('loadOrder');
+  },
+  computed: {
+    ...mapGetters([
+      'getOrderStatus'
+    ])
   }
 }
 </script>
 
 <style lang="scss">
 
+$primary: #BA2329;
 $secondary: #007DDB;
 $tertiary: #FDEC60;
 // Override Bootstrap colors
 $theme-colors: (
-   primary: #BA2329,
+   primary: $primary,
    secondary: $secondary,
    tertiary: $tertiary
 );
@@ -52,6 +61,10 @@ $theme-colors: (
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+body {
+  background-color: #F7F4EC;
 }
 
 .container {
@@ -75,16 +88,8 @@ $theme-colors: (
     font-weight: 700;
   }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
   @media screen and (min-width: 1440px) {
-    padding: 15px 110px;
+    padding: 15px 200px;
   }
 }
 
@@ -105,11 +110,19 @@ h1 {
   display: block;
 }
 
+.swiper-pagination-bullet-active {
+  background-color: $primary !important;
+}
+
 footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: $secondary;
   color: #fff;
   font-size: 11px;
   font-weight: 600;
+  z-index: 10;
 }
 
 </style>
