@@ -54,7 +54,8 @@ export default {
         date: new Date()
       },
       emailValidationMessage: '',
-      emailValid: true,
+      emailValid: false,
+      btnTxt: 'Confirm order',
       tomorrow: new Date()
     }
   },
@@ -69,9 +70,11 @@ export default {
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.confirmationDetails.email)) {
         this.emailValidationMessage = '';
         this.emailValidationClass = true;
+        this.emailValid = true;
         } else {
         this.emailValidationMessage = 'Please enter a valid email address';
         this.emailValidationClass = false;
+        this.emailValid = false;
       }
     }
   },

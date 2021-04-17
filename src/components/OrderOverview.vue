@@ -50,8 +50,19 @@ export default {
         // Perform validation logic
         // Should be expanded to take validation specific to steps into account
         this.currentOrder.selectedBeverages.length > 0 ? this.validated = true : this.validated = false;
+        
+        if (this.lastStep && !this.emailValid) {
+          this.validated = false;
+        }
 
-      } else {
+        // Validate time, should be revisited...
+          console.log(parseInt(this.confirmationDetails.time));
+        if (this.lastStep && parseInt(this.confirmationDetails.time) < 16 || parseInt(this.confirmationDetails.time) > 23) {
+          this.validated = false;
+        }
+
+      } 
+       else {
         this.validated = true;
       }
     },
