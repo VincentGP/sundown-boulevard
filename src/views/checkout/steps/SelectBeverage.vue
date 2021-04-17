@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-7">
       <div class="row">
-        <div class="col-6 col-lg-4" v-for="beverage in beveragesToShow" :key="beverage.id" @click="toggleBeverage(beverage)">
-          <div class="border mb-3 p-2">
+        <div class="col-6 col-lg-4" v-for="beverage in beverages" :key="beverage.id" @click="toggleBeverage(beverage)">
+          <div class="border mb-3 p-2 beverage" :class="{ active : isSelected(beverage.id) }">
             <img class="img-fluid mx-auto d-block" :src="beverage.image_url" />
-            <h5 class="fw-bold">{{ beverage.name }}</h5>
+            <h5 class="fw-bold text-center">{{ beverage.name }}</h5>
           </div>
         </div>
       </div>
@@ -20,6 +20,7 @@
 import axios from 'axios';
 import OrderOverview from '../../../components/OrderOverview.vue';
 import beers from '../../../json/beers.json';
+import { mapGetters } from "vuex";
 
 export default {
   components: { OrderOverview },
@@ -27,9 +28,6 @@ export default {
     return {
       beverages: beers
     }
-  },
-  created() {
-    // this.loadBeverages();
   },
   methods: {
     loadBeverages() {
@@ -43,18 +41,30 @@ export default {
     },
     toggleBeverage(beverage) {
       this.$store.commit('toggleBeverageSelection', beverage);
+    },
+    isSelected(id) {
+      return this.selectedBeverageIds.includes(id)
     }
   },
   computed: {
-    beveragesToShow() {
-      return this.beverages;
+    ...mapGetters([
+      'currentOrder'
+    ]),
+    selectedBeverageIds() {
+        return this.currentOrder.selectedBeverages.map(x => x.id);
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-height: 200px;
+.beverage {
+  cursor: pointer;
+  &.active {
+    background-color: #92e692;
+  }
+  img {
+    max-height: 200px;
+  }
 }
 </style>

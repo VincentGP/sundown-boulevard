@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <div class="row">
         <!-- <div class="col-12">Select date</div>
         <div class="col-12">Select time</div>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <OrderOverview btnTxt="Confirm order" :lastStep="true" :confirmationDetails="confirmationDetails" :validateStep="true" :emailValid="emailValid" />
     </div>
   </div>

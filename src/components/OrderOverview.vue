@@ -1,11 +1,11 @@
 <template>
   <div class="row order-overview">
     <h3>Overview</h3>
-    <div class="col-12">
+    <div class="col-12 mb-3">
       <div class="type" v-if="currentOrder.selectedDish != null">Selected dish: 
         <span class="selection">{{ currentOrder.selectedDish.strMeal }}</span>
       </div>
-      <div class="type">Selected beverages:
+      <div v-if="currentOrder.selectedBeverages.length > 0" class="type">Selected beverages:
         <ul>
           <li class="selection" v-for="beverage in currentOrder.selectedBeverages" :key="beverage.id">{{ beverage.name }}</li>
         </ul>
