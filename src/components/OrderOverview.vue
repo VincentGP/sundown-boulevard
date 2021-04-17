@@ -16,7 +16,8 @@ import { mapGetters } from "vuex";
 export default {
   props: {
     btnTxt: String,
-    navigateTo: String
+    navigateTo: String,
+    validateStep: Boolean
   },
   data() {
     return {
@@ -31,7 +32,12 @@ export default {
   },
   methods: {
     validate() {
-      this.getCurrentOrder.selectedBeverages.length > 0 ? this.validated = true : this.validated = false;
+      if (this.validateStep) {
+        // Perform validation logic
+        this.getCurrentOrder.selectedBeverages.length > 0 ? this.validated = true : this.validated = false;
+      } else {
+        this.validated = true;
+      }
     }
   },
   computed: {

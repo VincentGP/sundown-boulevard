@@ -37,8 +37,6 @@ export default createStore({
       return state.currentOrder;
     }
   }
-  // modules: {
-  // }
 })
 
 const saveOrderToLocalStorage = (currentOrder) => {

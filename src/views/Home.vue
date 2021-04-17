@@ -5,7 +5,7 @@
         <h1 class="text-center">Welcome to Sundown Boulevard!</h1>
       </div>
       <div class="col-6">
-        <router-link class="btn btn-primary" to="/select-dish">Order</router-link>
+        <router-link class="btn btn-primary" to="/select-dish">{{ btnText }}</router-link>
       </div>
       <div class="col-6">
         <span>Find your order here:</span>
@@ -38,6 +38,16 @@ export default {
   components: {
       Swiper,
       SwiperSlide,
+    },
+    data() {
+      return {
+        btnText: 'Create order'
+      }
+    },
+    created() {
+      if (localStorage.getItem('currentOrder') != null) {
+        this.btnText = 'Continue order'
+      }
     }
 }
 </script>

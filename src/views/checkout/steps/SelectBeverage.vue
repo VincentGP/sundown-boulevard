@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="col-4">
-      <OrderOverview btnTxt="Yes, confirm and continue.." navigateTo="/confirm-order" />
+      <OrderOverview btnTxt="Yes, confirm and continue.." navigateTo="/confirm-order" :validateStep="true" />
     </div>
   </div>
 </template>

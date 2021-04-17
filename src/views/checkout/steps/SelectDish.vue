@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-4">
-      <OrderOverview btnTxt="I'm thirsty.." navigateTo="/select-beverage" />
+      <OrderOverview btnTxt="I'm thirsty.." navigateTo="/select-beverage" :validateStep="false" />
     </div>
   </div>
 </template>
