@@ -6,7 +6,12 @@
         <li v-for="beverage in getCurrentOrder.selectedBeverages" :key="beverage.id">{{ beverage.name }}</li>
       </ul>
     </div>
-    <router-link class="btn btn-primary" :class="{ disabled: !validated }" :to="navigateTo">{{ btnTxt }}</router-link>
+    <template v-if="lastStep">
+      <button class="btn btn-primary" :class="{ disabled: !validated }" @click="confirmOrder()">{{ btnTxt }}</button>
+    </template>
+    <template v-else>
+      <router-link class="btn btn-primary" :class="{ disabled: !validated }" :to="navigateTo">{{ btnTxt }}</router-link>
+    </template>
   </div>
 </template>
 
@@ -17,7 +22,9 @@ export default {
   props: {
     btnTxt: String,
     navigateTo: String,
-    validateStep: Boolean
+    validateStep: Boolean,
+    lastStep: Boolean,
+    confirmationDetails: Object
   },
   data() {
     return {
@@ -34,10 +41,14 @@ export default {
     validate() {
       if (this.validateStep) {
         // Perform validation logic
+        // Should be expanded to take validation specific to steps into account
         this.getCurrentOrder.selectedBeverages.length > 0 ? this.validated = true : this.validated = false;
       } else {
         this.validated = true;
       }
+    },
+    confirmOrder() {
+      this.$store.commit('confirmOrder', this.confirmationDetails);
     }
   },
   computed: {
