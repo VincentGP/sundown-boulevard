@@ -55,12 +55,6 @@ export default {
           this.validated = false;
         }
 
-        // Validate time, should be revisited...
-          console.log(parseInt(this.confirmationDetails.time));
-        if (this.lastStep && parseInt(this.confirmationDetails.time) < 16 || parseInt(this.confirmationDetails.time) > 23) {
-          this.validated = false;
-        }
-
       } 
        else {
         this.validated = true;
