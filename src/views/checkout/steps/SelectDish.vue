@@ -68,11 +68,7 @@ export default {
     ]),
     shortDescription() {
       const maxLength = 220;
-      if (this.dishInstructions.length > maxLength) {
-        return `${this.dishInstructions.substring(0, maxLength)}...`;
-      } else {
-        return this.dishInstructions;
-      }
+      return this.dishInstructions.length > maxLength ? `${this.dishInstructions.substring(0, maxLength)}...` : this.dishInstructions;
     },
     dishImage () {
       return this.currentOrder.selectedDish != null ? this.currentOrder.selectedDish.strMealThumb : '';

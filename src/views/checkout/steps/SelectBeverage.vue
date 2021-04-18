@@ -30,6 +30,8 @@ export default {
     }
   },
   methods: {
+    // Service returns CORS error 
+    // Requests might be exceeded so use JSON file instead
     loadBeverages() {
       axios.get('https://api.punkapi.com/v2/beers')
         .then(res => {

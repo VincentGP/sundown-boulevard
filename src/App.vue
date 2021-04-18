@@ -45,6 +45,7 @@ export default {
 
 <style lang="scss">
 
+// Move variables to variables scss file
 $primary: #BA2329;
 $secondary: #007DDB;
 $tertiary: #FDEC60;
@@ -56,6 +57,7 @@ $theme-colors: (
 );
 @import 'bootstrap/scss/bootstrap.scss';
 
+// Move this styles to external stylesheet (site wide styles)
 #app {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

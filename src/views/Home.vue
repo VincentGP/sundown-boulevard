@@ -22,9 +22,7 @@
           :space-between="50"
           :pagination="{ clickable: true }"
         >
-          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
-          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
-          <swiper-slide><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
+          <swiper-slide v-for="index in 3" :key="index"><img class="img-fluid" src="../assets/cage.jpg" /></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -32,7 +30,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import SwiperCore, { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 

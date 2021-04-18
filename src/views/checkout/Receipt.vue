@@ -25,6 +25,7 @@ export default {
     }
   },
   created() {
+    // Fetch order from localStorage
     const email = this.$route.query.email;
     if (email != undefined) {
       const key = `currentOrder_${email}`;

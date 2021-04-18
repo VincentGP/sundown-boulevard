@@ -60,22 +60,17 @@ export default {
     }
   },
   created() {
+    // Initialize date properties
     const today = new Date();
     const tomorrow = new Date(today);
-    this.confirmationDetails.date = tomorrow.setDate(tomorrow.getDate() + 1)
-    this.tomorrow = tomorrow.setDate(tomorrow.getDate() + 1)
+    this.confirmationDetails.date = new Date(tomorrow.setDate(tomorrow.getDate() + 1));
+    this.tomorrow = new Date(tomorrow.setDate(tomorrow.getDate() + 1));
   },
   methods: {
     validateEmail() {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.confirmationDetails.email)) {
-        this.emailValidationMessage = '';
-        this.emailValidationClass = true;
-        this.emailValid = true;
-        } else {
-        this.emailValidationMessage = 'Please enter a valid email address';
-        this.emailValidationClass = false;
-        this.emailValid = false;
-      }
+      const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.confirmationDetails.email);
+      this.emailValidationMessage = emailValid ? '' : 'Please enter a valid email address';
+      this.emailValid = emailValid;
     }
   },
   computed: {

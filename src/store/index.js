@@ -35,7 +35,7 @@ const mutations = {
       key += `_${email}`;
     }
 
-    // Too much logic - move this to action
+    // Too much logic - move this to action in future
     const savedOrder = JSON.parse(localStorage.getItem(key));
     if (savedOrder != null) {
       // Saved order becomes current order
@@ -51,6 +51,7 @@ const mutations = {
     }
   },
   confirmOrder(state, confirmationDetailsData) {
+    // Create better mapping of data
     state.currentOrder.email = confirmationDetailsData.email;
     state.currentOrder.amountOfPeople = confirmationDetailsData.amountOfPeople;
     state.currentOrder.time = confirmationDetailsData.time;
@@ -66,11 +67,6 @@ const mutations = {
 export default createStore({
   state,
   mutations,
-  actions: {
-    updateOrder({commit}, orderData) {
-
-    }
-  },
   getters: {
     currentOrder: (state) => {
       return state.currentOrder;

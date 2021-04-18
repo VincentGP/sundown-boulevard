@@ -7,6 +7,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  // Maybe nest these routes as checkout/route-name or step/1, step/2 and so on
   {
     path: '/select-dish',
     name: 'Select dish',
