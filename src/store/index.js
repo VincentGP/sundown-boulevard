@@ -8,7 +8,7 @@ const getDefaultState = () => {
       selectedBeverages: [],
       date: new Date(),
       time: '16:00',
-      amountOfPeople: 0,
+      amountOfPeople: 1,
       email: ''
     }
   }

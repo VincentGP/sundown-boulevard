@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 mb-2">
           <label for="email" class="form-label">Please enter your email address</label>
-          <input type="email" class="form-control" id="email" v-model="email" @change="validateEmail()" placeholder="Email">
+          <input type="email" class="form-control" id="email" v-model="confirmationDetails.email" @change="validateEmail()" placeholder="Email">
           <div v-if="emailValidationMessage != ''" class="invalid-feedback invalid-feedback">
             {{ emailValidationMessage }}
           </div>
@@ -65,6 +65,15 @@ export default {
     const tomorrow = new Date(today);
     this.confirmationDetails.date = new Date(tomorrow.setDate(tomorrow.getDate() + 1));
     this.tomorrow = new Date(tomorrow.setDate(tomorrow.getDate() + 1));
+
+    // Set properties and validate email
+    if (this.currentOrder.email != '') {
+      this.confirmationDetails.email = this.currentOrder.email;
+      this.validateEmail();
+    }
+    this.confirmationDetails.amountOfPeople = this.currentOrder.amountOfPeople;
+    this.confirmationDetails.time = this.currentOrder.time;
+    this.confirmationDetails.date = new Date(this.currentOrder.date);
   },
   methods: {
     validateEmail() {
@@ -77,10 +86,7 @@ export default {
     ...mapGetters([
       'currentOrder',
       'getOrderStatus'
-    ]),
-    email() {
-      return this.currentOrder.email != '' ? this.currentOrder.email : this.confirmationDetails.email;
-    }
+    ])
   }
 }
 </script>
